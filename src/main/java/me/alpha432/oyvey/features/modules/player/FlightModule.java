@@ -4,7 +4,8 @@ import me.alpha432.oyvey.features.modules.Module;
 
 public class FlightModule extends Module {
     public FlightModule() {
-        super("Flight", "Allows you to fly", Category.PLAYER, true);
+        // Removed the "true" at the end to match your project's Module constructor
+        super("Flight", "Allows you to fly", Category.PLAYER);
     }
 
     @Override
