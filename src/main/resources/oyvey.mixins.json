@@ -18,7 +18,7 @@
     "render.gui.MixinGui",
     "render.MixinEntityRenderer",
     "network.MixinClientPlayNetworkHandler",
-    "IClientLevel"
+    "world.IClientLevel"
   ],
   "injectors": {
     "defaultRequire": 1
