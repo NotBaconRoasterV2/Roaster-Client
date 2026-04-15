@@ -10,7 +10,7 @@ import java.awt.Color;
 
 public class ESPModule extends Module {
     public ESPModule() {
-        super("ESP", "Highlights entities through walls", Category.RENDER);
+        super("ESP", "Highlights players through walls", Category.RENDER);
     }
 
     @Subscribe
@@ -20,20 +20,15 @@ public class ESPModule extends Module {
         for (Entity entity : mc.level.entitiesForRendering()) {
             if (entity == mc.player || !entity.isAlive()) continue;
 
-            // Only highlight players for now, you can add mobs later
             if (entity instanceof Player) {
-                renderESP(event, entity, Color.RED);
+                // event.getMatrices() is the common name in OyVey ports
+                RenderUtil.drawBox(
+                    event.getMatrices(), 
+                    entity.getBoundingBox(), 
+                    new Color(255, 0, 0, 100), 
+                    true
+                );
             }
         }
-    }
-
-    private void renderESP(Render3DEvent event, Entity entity, Color color) {
-        // We use the bounding box to draw the ESP
-        RenderUtil.drawBox(
-            event.getContext(),
-            entity.getBoundingBox(),
-            color,
-            0.4f // Transparency
-        );
     }
 }
