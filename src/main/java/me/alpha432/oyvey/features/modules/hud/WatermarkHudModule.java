@@ -25,7 +25,7 @@ public class WatermarkHudModule extends HudModule {
         String watermarkString = "{purple} Roasters {reset} | {red} RELEASE";
         
         // Process the string through TextUtil to apply the colors
-        String renderedText = TextUtil.text(watermarkString);
+        String renderedText = TextUtil.text(watermarkString).getString();
 
         e.getContext().drawString(mc.font,
                 renderedText,
