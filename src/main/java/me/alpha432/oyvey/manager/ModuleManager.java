@@ -24,6 +24,8 @@ import me.alpha432.oyvey.features.modules.player.NoFallModule;
 import me.alpha432.oyvey.features.modules.player.VelocityModule;
 import me.alpha432.oyvey.features.modules.player.FlightModule;
 import me.alpha432.oyvey.features.modules.render.BlockHighlightModule;
+import me.alpha432.oyvey.features.modules.render.ESPModule; // New
+import me.alpha432.oyvey.features.modules.render.StorageESPModule; // New
 import me.alpha432.oyvey.features.modules.hud.FpsHudModule;
 import me.alpha432.oyvey.features.modules.hud.PingHudModule;
 import me.alpha432.oyvey.features.modules.hud.TpsHudModule;
@@ -42,29 +44,41 @@ public class ModuleManager implements Jsonable, Util {
     private final List<Module> modules = new ArrayList<>();
 
     public void init() {
+        // Client / HUD
         register(new WatermarkHudModule());
         register(new CoordinatesHudModule());
         register(new HudEditorModule());
         register(new ClickGuiModule());
         register(new NotificationsModule());
-        register(new CriticalsModule());
-        register(new MCFModule());
-        register(new KillAuraModule());
-        register(new StepModule());
-        register(new ReverseStepModule());
-        register(new FastPlaceModule());
-        register(new VelocityModule());
-        register(new BlockHighlightModule());
-        register(new NoFallModule());
-        register(new KeyPearlModule());
-        register(new FlightModule());
         register(new FpsHudModule());
         register(new PingHudModule());
         register(new TpsHudModule());
 
+        // Combat
+        register(new CriticalsModule());
+        register(new KillAuraModule());
+        register(new KeyPearlModule());
+
+        // Movement
+        register(new StepModule());
+        register(new ReverseStepModule());
+
+        // Player
+        register(new FastPlaceModule());
+        register(new VelocityModule());
+        register(new NoFallModule());
+        register(new FlightModule());
+
+        // Render
+        register(new BlockHighlightModule());
+        register(new ESPModule()); // Added
+        register(new StorageESPModule()); // Added
+
+        // Misc
+        register(new MCFModule());
+
         LOGGER.info("Registered {} modules", modules.size());
 
-        // Create a command for each module for modules to be configurable via command line
         for (Module module : modules) {
             OyVey.commandManager.register(new ModuleCommand(module));
         }
