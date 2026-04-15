@@ -18,10 +18,10 @@ public class FreecamModule extends Module {
             return;
         }
 
-        // Save the location of your real body
+        // Save the location of your real body using modern fields
         originalPos = mc.player.position();
-        originalYaw = mc.player.getYaw();
-        originalPitch = mc.player.getPitch();
+        originalYaw = mc.player.getYRot();
+        originalPitch = mc.player.getXRot();
 
         // Enable client-side noclip
         mc.player.noPhysics = true;
@@ -33,7 +33,6 @@ public class FreecamModule extends Module {
 
         // Keep the player in a flying state
         mc.player.getAbilities().flying = true;
-        mc.player.getAbilities().setFlySpeed(0.1f);
         
         // Ensure we can pass through blocks every tick
         mc.player.noPhysics = true;
@@ -46,8 +45,8 @@ public class FreecamModule extends Module {
             // Restore your body to its original position
             if (originalPos != null) {
                 mc.player.setPos(originalPos.x, originalPos.y, originalPos.z);
-                mc.player.setYaw(originalYaw);
-                mc.player.setPitch(originalPitch);
+                mc.player.setYRot(originalYaw);
+                mc.player.setXRot(originalPitch);
             }
 
             // Reset flight state
