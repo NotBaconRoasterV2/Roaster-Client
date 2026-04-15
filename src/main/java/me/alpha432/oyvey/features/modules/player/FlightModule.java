@@ -14,11 +14,10 @@ public class FlightModule extends Module {
     public void onTick() {
         if (nullCheck()) return;
 
-        // Enable flying ability
         mc.player.getAbilities().flying = true;
-        mc.player.getAbilities().setFlySpeed(flySpeed / 10f);
+        // setFlySpeed is a field called flyingSpeed in these mappings
+        mc.player.getAbilities().flyingSpeed = flySpeed / 10f;
 
-        // Vertical movement logic
         double verticalSpeed = 0;
         if (mc.options.keyJump.isDown()) {
             verticalSpeed = flySpeed;
@@ -26,7 +25,6 @@ public class FlightModule extends Module {
             verticalSpeed = -flySpeed;
         }
 
-        // Apply vertical velocity so you can actually move up and down
         if (verticalSpeed != 0) {
             Vec3 vel = mc.player.getDeltaMovement();
             mc.player.setDeltaMovement(vel.x, verticalSpeed, vel.z);
@@ -36,12 +34,10 @@ public class FlightModule extends Module {
     @Override
     public void onDisable() {
         if (mc.player != null) {
-            // Reset flying state
             if (!mc.player.isCreative()) {
                 mc.player.getAbilities().flying = false;
             }
-            // Stop movement so you don't drift after disabling
-            mc.player.getAbilities().setFlySpeed(0.05f); 
+            mc.player.getAbilities().flyingSpeed = 0.05f; 
         }
     }
 }
