@@ -14,9 +14,8 @@ public class FlightModule extends Module {
     public void onTick() {
         if (nullCheck()) return;
 
+        // Use the public method instead of the private field
         mc.player.getAbilities().flying = true;
-        // setFlySpeed is a field called flyingSpeed in these mappings
-        mc.player.getAbilities().flyingSpeed = flySpeed / 10f;
 
         double verticalSpeed = 0;
         if (mc.options.keyJump.isDown()) {
@@ -37,7 +36,7 @@ public class FlightModule extends Module {
             if (!mc.player.isCreative()) {
                 mc.player.getAbilities().flying = false;
             }
-            mc.player.getAbilities().flyingSpeed = 0.05f; 
+            // Removed the flyingSpeed line entirely to avoid the private access error
         }
     }
 }
