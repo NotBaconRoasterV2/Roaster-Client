@@ -24,6 +24,9 @@ import me.alpha432.oyvey.features.modules.player.NoFallModule;
 import me.alpha432.oyvey.features.modules.player.VelocityModule;
 import me.alpha432.oyvey.features.modules.player.FlightModule;
 import me.alpha432.oyvey.features.modules.render.BlockHighlightModule;
+import me.alpha432.oyvey.features.modules.hud.FpsHudModule;
+import me.alpha432.oyvey.features.modules.hud.PingHudModule;
+import me.alpha432.oyvey.features.modules.hud.TpsHudModule;
 import me.alpha432.oyvey.util.traits.Jsonable;
 import me.alpha432.oyvey.util.traits.Util;
 import org.slf4j.Logger;
@@ -55,6 +58,9 @@ public class ModuleManager implements Jsonable, Util {
         register(new NoFallModule());
         register(new KeyPearlModule());
         register(new FlightModule());
+        register(new FpsHudModule());
+        register(new PingHudModule());
+        register(new TpsHudModule());
 
         LOGGER.info("Registered {} modules", modules.size());
 
