@@ -20,17 +20,19 @@ public class WatermarkHudModule extends HudModule {
     @Override
     protected void render(Render2DEvent e) {
         super.render(e);
-        String watermarkString = "{global} %s {} %s";
-        if (fullVersion.getValue() && BuildConfig.USING_GIT) {
-            watermarkString += "/" + BuildConfig.BRANCH + "-" + BuildConfig.HASH;
-        }
+        
+        // Define the formatted string with color tags
+        String watermarkString = "{purple} Roasters {reset} | {red} RELEASE";
+        
+        // Process the string through TextUtil to apply the colors
+        String renderedText = TextUtil.text(watermarkString);
 
         e.getContext().drawString(mc.font,
-                TextUtil.text(watermarkString, text.getValue(), BuildConfig.VERSION),
+                renderedText,
                 (int) getX(), (int) getY(), -1);
 
-        setWidth(mc.font.width(watermarkString));
+        // Set width and height based on the rendered text
+        setWidth(mc.font.width(renderedText));
         setHeight(mc.font.lineHeight);
     }
 }
-
