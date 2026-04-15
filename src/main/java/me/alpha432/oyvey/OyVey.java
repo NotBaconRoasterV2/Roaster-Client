@@ -8,10 +8,10 @@ import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class RoasterClient implements ModInitializer, ClientModInitializer {
+public class OyVey implements ModInitializer, ClientModInitializer {
     public static float TIMER = 1f;
 
-    public static final Logger LOGGER = LogManager.getLogger("RoasterClient");
+    public static final Logger LOGGER = LogManager.getLogger("OyVey");
     public static ServerManager serverManager;
     public static ColorManager colorManager;
     public static RotationManager rotationManager;
@@ -26,8 +26,8 @@ public class RoasterClient implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Pre-initializing RoasterClient v{}",
-                BuildConfig.VERSION);
+        LOGGER.info("Pre-initializing {} v{}",
+                BuildConfig.NAME, BuildConfig.VERSION);
         configManager = new ConfigManager();
         eventManager = new EventManager();
         serverManager = new ServerManager();
@@ -45,7 +45,7 @@ public class RoasterClient implements ModInitializer, ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info("Initializing RoasterClient");
+        LOGGER.info("Initializing {}", BuildConfig.NAME);
 
         long startTime = System.nanoTime();
 
@@ -60,7 +60,7 @@ public class RoasterClient implements ModInitializer, ClientModInitializer {
 
         long endTime = System.nanoTime();
 
-        LOGGER.info("Initialized RoasterClient in {}ms",
-                (endTime - startTime) / 1000000.0);
+        LOGGER.info("Initialized {} in {}ms",
+                BuildConfig.NAME, (endTime - startTime) / 1000000.0);
     }
 }

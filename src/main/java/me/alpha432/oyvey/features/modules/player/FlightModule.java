@@ -1,24 +1,24 @@
-package com.magic.modules.player;
+package me.alpha432.oyvey.features.modules.player;
 
-import org.lwjgl.input.Keyboard;
-
-import com.magic.main.Objects;
-import com.magic.modules.Category;
-import com.magic.modules.Module;
+import me.alpha432.oyvey.features.modules.Module;
 
 public class FlightModule extends Module {
-	
-	public FlightModule() {
-		super("Flight", Keyboard.KEY_NONE, 0xFF04B404, true, Category.PLAYER);
-	}
-	
-	@Override
-	public void onPreMotionUpdates() {
-		Objects.mc.thePlayer.capabilities.isFlying = true;
-	}
-	
-	@Override
-	public void onDisable() {
-		Objects.mc.thePlayer.capabilities.isFlying = false;
-	}
+    public FlightModule() {
+        // Removed the "true" at the end to match your project's Module constructor
+        super("Flight", "Allows you to fly", Category.PLAYER);
+    }
+
+    @Override
+    public void onTick() {
+        if (mc.player != null) {
+            mc.player.getAbilities().flying = true;
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        if (mc.player != null && !mc.player.isCreative()) {
+            mc.player.getAbilities().flying = false;
+        }
+    }
 }
