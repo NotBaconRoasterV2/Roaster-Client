@@ -14,6 +14,7 @@ import me.alpha432.oyvey.features.modules.client.NotificationsModule;
 import me.alpha432.oyvey.features.modules.combat.CriticalsModule;
 import me.alpha432.oyvey.features.modules.combat.KeyPearlModule;
 import me.alpha432.oyvey.features.modules.hud.CoordinatesHudModule;
+import me.alpha432.oyvey.features.modules.combat.KillAuraModule;
 import me.alpha432.oyvey.features.modules.hud.WatermarkHudModule;
 import me.alpha432.oyvey.features.modules.misc.MCFModule;
 import me.alpha432.oyvey.features.modules.movement.ReverseStepModule;
@@ -45,6 +46,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new NotificationsModule());
         register(new CriticalsModule());
         register(new MCFModule());
+        register(new KillAuraModule());
         register(new StepModule());
         register(new ReverseStepModule());
         register(new FastPlaceModule());
