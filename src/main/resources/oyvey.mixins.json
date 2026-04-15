@@ -15,7 +15,10 @@
     "render.MixinLevelRenderer",
     "render.MixinDeltaTrackerTimer",
     "render.gui.MixinCommandSuggestions",
-    "render.gui.MixinGui"
+    "render.gui.MixinGui",
+    "render.MixinEntityRenderer",
+    "network.MixinClientPlayNetworkHandler",
+    "world.IClientLevel"
   ],
   "injectors": {
     "defaultRequire": 1

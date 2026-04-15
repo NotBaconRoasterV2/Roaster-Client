@@ -14,6 +14,7 @@ import me.alpha432.oyvey.features.modules.client.NotificationsModule;
 import me.alpha432.oyvey.features.modules.combat.CriticalsModule;
 import me.alpha432.oyvey.features.modules.combat.KeyPearlModule;
 import me.alpha432.oyvey.features.modules.hud.CoordinatesHudModule;
+import me.alpha432.oyvey.features.modules.combat.KillAuraModule;
 import me.alpha432.oyvey.features.modules.hud.WatermarkHudModule;
 import me.alpha432.oyvey.features.modules.misc.MCFModule;
 import me.alpha432.oyvey.features.modules.movement.ReverseStepModule;
@@ -21,8 +22,11 @@ import me.alpha432.oyvey.features.modules.movement.StepModule;
 import me.alpha432.oyvey.features.modules.player.FastPlaceModule;
 import me.alpha432.oyvey.features.modules.player.NoFallModule;
 import me.alpha432.oyvey.features.modules.player.VelocityModule;
-import me.alpha432.oyvey.features.modules.player.FlightModule; // Added Import
+import me.alpha432.oyvey.features.modules.player.FlightModule;
 import me.alpha432.oyvey.features.modules.render.BlockHighlightModule;
+import me.alpha432.oyvey.features.modules.hud.FpsHudModule;
+import me.alpha432.oyvey.features.modules.hud.PingHudModule;
+import me.alpha432.oyvey.features.modules.hud.TpsHudModule;
 import me.alpha432.oyvey.util.traits.Jsonable;
 import me.alpha432.oyvey.util.traits.Util;
 import org.slf4j.Logger;
@@ -45,6 +49,7 @@ public class ModuleManager implements Jsonable, Util {
         register(new NotificationsModule());
         register(new CriticalsModule());
         register(new MCFModule());
+        register(new KillAuraModule());
         register(new StepModule());
         register(new ReverseStepModule());
         register(new FastPlaceModule());
@@ -52,7 +57,10 @@ public class ModuleManager implements Jsonable, Util {
         register(new BlockHighlightModule());
         register(new NoFallModule());
         register(new KeyPearlModule());
-        register(new FlightModule()); // Registered FlightModule
+        register(new FlightModule());
+        register(new FpsHudModule());
+        register(new PingHudModule());
+        register(new TpsHudModule());
 
         LOGGER.info("Registered {} modules", modules.size());
 
@@ -142,7 +150,9 @@ public class ModuleManager implements Jsonable, Util {
     @Override
     public void fromJson(JsonElement element) {
         for (Module module : getModules()) {
-            module.fromJson(element.getAsJsonObject().get(module.getName()));
+            if (element.getAsJsonObject().has(module.getName())) {
+                module.fromJson(element.getAsJsonObject().get(module.getName()));
+            }
         }
     }
 
