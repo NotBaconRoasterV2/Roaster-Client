@@ -24,8 +24,6 @@ import me.alpha432.oyvey.features.modules.player.NoFallModule;
 import me.alpha432.oyvey.features.modules.player.VelocityModule;
 import me.alpha432.oyvey.features.modules.player.FlightModule;
 import me.alpha432.oyvey.features.modules.render.BlockHighlightModule;
-import me.alpha432.oyvey.features.modules.render.ESPModule; // New
-import me.alpha432.oyvey.features.modules.render.StorageESPModule; // New
 import me.alpha432.oyvey.features.modules.hud.FpsHudModule;
 import me.alpha432.oyvey.features.modules.hud.PingHudModule;
 import me.alpha432.oyvey.features.modules.hud.TpsHudModule;
@@ -71,8 +69,6 @@ public class ModuleManager implements Jsonable, Util {
 
         // Render
         register(new BlockHighlightModule());
-        register(new ESPModule()); // Added
-        register(new StorageESPModule()); // Added
 
         // Misc
         register(new MCFModule());
