@@ -15,8 +15,10 @@ public class ClickGuiModule extends Module {
     private static ClickGuiModule INSTANCE;
 
     public Setting<String> prefix = str("Prefix", ".");
-    public Setting<Color> color = color("Color", 0, 0, 255, 180);
-    public Setting<Color> topColor = color("TopColor", 0, 0, 150, 240);
+    // Updated to White (255, 255, 255)
+    public Setting<Color> color = color("Color", 255, 255, 255, 255);
+    // Updated to a slightly distinct bright white/grey for the top bar
+    public Setting<Color> topColor = color("TopColor", 255, 255, 255, 150);
     public Setting<Boolean> rainbow = bool("Rainbow", false);
     public Setting<Integer> rainbowHue = num("Delay", 240, 0, 600);
     public Setting<Float> rainbowBrightness = num("Brightness", 150.0f, 1.0f, 255.0f);
